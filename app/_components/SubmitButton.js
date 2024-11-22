@@ -1,7 +1,7 @@
 "use client";
 import { useFormStatus } from "react-dom";
 
-export default function SubmitButton({ children, pendingLabel }) {
+function SubmitButton({ children, pendingLabel }) {
   const { pending } = useFormStatus();
 
   return (
@@ -13,3 +13,5 @@ export default function SubmitButton({ children, pendingLabel }) {
     </button>
   );
 }
+
+export default SubmitButton;
