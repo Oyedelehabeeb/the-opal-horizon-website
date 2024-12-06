@@ -9,7 +9,7 @@ export const metadata = {
 
 export default async function Page() {
   const session = await auth();
-  const guest = await getGuest(session.user.email);
+  const guest = await getGuest(session?.user?.email);
 
   return (
     <div className="px-4 sm:px-6 md:px-8 max-w-2xl mx-auto">
