@@ -33,7 +33,7 @@ export default async function Page() {
 
           <p className="text-lg text-gray-600 mb-8">
             Provide the following information to make your check-in process
-            faster and smoother. We can't wait to welcome you!
+            faster and smoother. We can&apos;t wait to welcome you!
           </p>
         </div>
 
