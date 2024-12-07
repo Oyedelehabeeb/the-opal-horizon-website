@@ -11,14 +11,12 @@ export const metadata = {
 export default async function Page() {
   const session = await auth();
 
-  // Redirect if no session
-  if (!session || !session.user) {
+  if (!session || !session?.user) {
     redirect("/login");
   }
 
-  const guest = await getGuest(session.user.email);
+  const guest = await getGuest(session?.user?.email);
 
-  // Redirect if no guest found
   if (!guest) {
     redirect("/");
   }
@@ -52,7 +50,7 @@ export default async function Page() {
                          border border-gray-300 rounded-md shadow-sm 
                          focus:ring-indigo-500 focus:border-indigo-500 
                          transition duration-300 ease-in-out"
-              defaultCountry={guest.nationality}
+              defaultCountry={guest?.nationality}
             />
           </div>
         </UpdateProfileForm>
