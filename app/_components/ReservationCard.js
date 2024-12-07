@@ -24,7 +24,7 @@ function ReservationCard({ booking, onDelete }) {
   } = booking;
 
   return (
-    <div className="flex border border-primary-800">
+    <div className="flex flex-col sm:flex-row border border-primary-800">
       <div className="relative h-32 aspect-square">
         <Image
           src={image}
@@ -35,16 +35,16 @@ function ReservationCard({ booking, onDelete }) {
       </div>
 
       <div className="flex-grow px-6 py-3 flex flex-col">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-0 items-center justify-between">
           <h3 className="text-xl font-semibold">
             {numNights} nights in Cabin {name}
           </h3>
           {isPast(new Date(startDate)) ? (
-            <span className="bg-yellow-800 text-yellow-200 h-7 px-3 uppercase text-xs font-bold flex items-center rounded-sm">
+            <span className="bg-yellow-800 text-yellow-200 h-7 px-3 uppercase text-xs font-bold flex items-center rounded-sm order-first sm:order-none">
               past
             </span>
           ) : (
-            <span className="bg-green-800 text-green-200 h-7 px-3 uppercase text-xs font-bold flex items-center rounded-sm">
+            <span className="bg-green-800 text-green-200 h-7 px-3 uppercase text-xs font-bold flex items-center rounded-sm order-first sm:order-none ">
               upcoming
             </span>
           )}
@@ -58,7 +58,7 @@ function ReservationCard({ booking, onDelete }) {
           ) &mdash; {format(new Date(endDate), "EEE, MMM dd yyyy")}
         </p>
 
-        <div className="flex gap-5 mt-auto items-baseline">
+        <div className="flex flex-col sm:flex-row gap-5 mt-auto items-baseline">
           <p className="text-xl font-semibold text-accent-400">${totalPrice}</p>
           <p className="text-primary-300">&bull;</p>
           <p className="text-lg text-primary-300">
@@ -70,7 +70,7 @@ function ReservationCard({ booking, onDelete }) {
         </div>
       </div>
 
-      <div className="flex flex-col border-l border-primary-800 w-[100px]">
+      <div className="flex pb-9 sm:pb-0 flex-row sm:flex-col border-l border-primary-800 w-[100px]">
         {!isPast(startDate) ? (
           <>
             <Link

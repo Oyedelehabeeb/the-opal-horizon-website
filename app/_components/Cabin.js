@@ -6,8 +6,8 @@ export default function Cabin({ cabin }) {
   const { id, name, maxCapacity, regularPrice, discount, image, description } =
     cabin;
   return (
-    <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
-      <div className="relative aspect-square object-cover">
+    <div className="flex sm:grid sm:grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
+      <div className="order-first sm:order-none relative aspect-square object-cover">
         <Image
           src={image}
           alt={`Cabin ${name}`}
@@ -17,7 +17,7 @@ export default function Cabin({ cabin }) {
       </div>
 
       <div>
-        <h3 className="text-accent-100 font-black text-7xl mb-5 translate-x-[-254px] bg-primary-950 p-6 pb-1 w-[150%]">
+        <h3 className="text-accent-100 font-black text-2xl sm:text-7xl mb-5 translate-x-[-254px] bg-primary-950 p-6 pb-1 w-[150%] hidden sm:inline">
           Cabin {name}
         </h3>
 

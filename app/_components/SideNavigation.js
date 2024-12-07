@@ -42,7 +42,7 @@ function SideNavigation() {
               href={link.href}
             >
               {link.icon}
-              <span>{link.name}</span>
+              <span className="hidden sm:inline">{link.name}</span>
             </Link>
           </li>
         ))}
