@@ -3,43 +3,44 @@ import { auth } from "../_lib/auth";
 
 export default async function Navigation() {
   const session = await auth();
+
   return (
-    <nav className="z-10 text-base sm:text-lg md:text-xl">
-      <ul className="flex flex-col sm:flex-row gap-4 sm:gap-8 md:gap-16 items-center">
-        <li className="w-full sm:w-auto text-center sm:text-left">
+    <nav className="z-10 text-xl">
+      <ul className="flex gap-16 items-center">
+        <li>
           <Link
             href="/cabins"
-            className="block sm:inline hover:text-accent-400 transition-colors"
+            className="hover:text-accent-400 transition-colors"
           >
             Cabins
           </Link>
         </li>
-        <li className="w-full sm:w-auto text-center sm:text-left">
+        <li>
           <Link
             href="/about"
-            className="block sm:inline hover:text-accent-400 transition-colors"
+            className="hover:text-accent-400 transition-colors"
           >
             About
           </Link>
         </li>
-        <li className="w-full sm:w-auto text-center sm:text-left">
+        <li>
           {session?.user?.image ? (
             <Link
               href="/account"
-              className="block sm:inline hover:text-accent-400 transition-colors flex flex-col sm:flex-row items-center gap-2 sm:gap-4"
+              className="hover:text-accent-400 transition-colors flex items-center gap-4"
             >
               <img
-                className="h-8 w-8 rounded-full mx-auto sm:mx-0"
-                src={session?.user?.image}
-                alt={session?.user?.name}
+                className="h-8 rounded-full"
+                src={session.user.image}
+                alt={session.user.name}
                 referrerPolicy="no-referrer"
               />
-              <span className="mt-1 sm:mt-0">Guest area</span>
+              <span>Guest area</span>
             </Link>
           ) : (
             <Link
               href="/account"
-              className="block sm:inline hover:text-accent-400 transition-colors"
+              className="hover:text-accent-400 transition-colors"
             >
               Guest area
             </Link>
