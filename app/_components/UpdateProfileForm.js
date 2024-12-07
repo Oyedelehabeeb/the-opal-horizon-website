@@ -1,7 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import { updateGuest } from "../_lib/actions";
 import SubmitButton from "./SubmitButton";
 
 function UpdateProfileForm({ guest, children }) {
+  const [count, setCount] = useState();
+
   const { fullName, email, nationality, nationalID, countryFlag } = guest;
 
   return (
