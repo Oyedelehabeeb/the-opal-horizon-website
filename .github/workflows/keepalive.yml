@@ -1,0 +1,38 @@
+name: Keepalive ping
+
+on:
+  schedule:
+    # Every 3 days at 00:00 UTC (approx. every 72 hours)
+    - cron: "0 0 */3 * *"
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping keepalive endpoint
+        env:
+          KEEPALIVE_URL: ${{ secrets.KEEPALIVE_URL }}
+          KEEPALIVE_BEARER: ${{ secrets.KEEPALIVE_BEARER }}
+        run: |
+          if [ -z "$KEEPALIVE_URL" ]; then
+            echo "The secret KEEPALIVE_URL is not set. Please add it in repository settings.";
+            exit 1;
+          fi
+
+          echo "Calling $KEEPALIVE_URL"
+          # Optional Authorization header when KEEPALIVE_BEARER is provided
+          if [ -n "$KEEPALIVE_BEARER" ]; then
+            response=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $KEEPALIVE_BEARER" "$KEEPALIVE_URL")
+          else
+            response=$(curl -s -o /dev/null -w "%{http_code}" "$KEEPALIVE_URL")
+          fi
+
+          echo "HTTP status: $response"
+          if [ "$response" -ge 200 ] && [ "$response" -lt 300 ]; then
+            echo "Keepalive ping successful"
+            exit 0
+          else
+            echo "Keepalive ping failed with status $response"
+            exit 1
+          fi
