@@ -3,6 +3,10 @@ import Google from "next-auth/providers/google";
 import { createGuest, getGuest } from "./data-service";
 
 const authConfig = {
+  // IMPORTANT: Auth.js requires a secret. Provide NEXTAUTH_SECRET in production
+  // environment variables. For local development, we fall back to a dev secret
+  // to avoid crashes. Do not use the dev secret in production.
+  secret: process.env.NEXTAUTH_SECRET || (process.env.NODE_ENV === "production" ? undefined : "dev-secret"),
   providers: [
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
